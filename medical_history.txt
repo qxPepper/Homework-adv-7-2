@@ -1,0 +1,37 @@
+Клиент приводит или приносит животное.
+Если первый раз, то на ресепшене заводят историю болезни.
+Далее, по симптомам ветеринар определяет диагноз.
+Назначает лекарства или иные средства.
+Данные по симптомам, назначенному лечению, а также статус лечения
+	на конкретный день ветеринар вносит в историю болезни.
+
+За период лечения клиент может несколько раз  приводить
+	или приносить животное.
+Таким образом отслеживается течение выздоровления.
+-----------
+Домен состоит из 4-х объектов, агрегатов. Пакет domain_objects.
+	Aggregate_1 - Reception
+	Entity - MedicalHistory
+	Repository - RepositoryReception
+
+	Aggregate_2 - Diagnostics
+	Entity - medicalHistory
+	Value object - symptoms
+	Repository - RepositoryDiagnostics
+
+	Aggregate_3 - Treatment
+	Entity - medicalHistory
+	Value object - drugsAndOperations
+	Repository - RepositoryTreatment
+
+	Aggregate_4 - Tracking
+	Entity - medicalHistory
+	Value object - treatmentStatus
+	Repository - RepositoryTracking
+
+Доменные сервисы представлены в пакете domain_services,
+	в классе Manager.
+
+Класс Main не входит в перечисленные пакеты.
+Он служит для простейшей иммитации привода животных и
+	заполнения карты историй болезней.
